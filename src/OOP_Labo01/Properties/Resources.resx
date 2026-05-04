@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="WindowTitle" xml:space="preserve"><value>ЛР2 — Локализация WPF (RESX, MVVM)</value></data>
+  <data name="TabDefault" xml:space="preserve"><value>1. По умолчанию (Default)</value></data>
+  <data name="TabTwoWay" xml:space="preserve"><value>2. TwoWay</value></data>
+  <data name="TabOneTime" xml:space="preserve"><value>3. OneTime</value></data>
+  <data name="TabOneWay" xml:space="preserve"><value>4. OneWay</value></data>
+  <data name="TabTriggers" xml:space="preserve"><value>5. Триггеры</value></data>
+  <data name="LanguagePrompt" xml:space="preserve"><value>Язык:</value></data>
+  <data name="AboutMenu" xml:space="preserve"><value>О программе</value></data>
+  <data name="AboutTitle" xml:space="preserve"><value>О программе</value></data>
+  <data name="AboutBody" xml:space="preserve"><value>Лабораторная работа №2: динамическая локализация (RESX). Сообщение выводится из ресурсов.</value></data>
+  <data name="DefaultSectionTitle" xml:space="preserve"><value>Режим Default: для каждого DependencyProperty задан свой режим по умолчанию (у TextBox.Text — TwoWay).</value></data>
+  <data name="DefaultSectionSubtitle" xml:space="preserve"><value>Слева — «прямая» привязка между элементами (ElementName). Справа — привязка к свойствам ViewModel.</value></data>
+  <data name="DefaultGroupDirectHeader" xml:space="preserve"><value>Прямая привязка (ElementName)</value></data>
+  <data name="DefaultDirectDescription" xml:space="preserve"><value>Slider → Label: значение слайдера показывается в подписи.</value></data>
+  <data name="DefaultTwoBoxesDescription" xml:space="preserve"><value>Два TextBox связаны TwoWay через ElementName (текст дублируется).</value></data>
+  <data name="DefaultLeftBoxText" xml:space="preserve"><value>Левое поле</value></data>
+  <data name="DefaultLeftBoxHint" xml:space="preserve"><value>Подсказка: дублирующее поле. Меняется при смене языка, пока вы не отредактируете текст.</value></data>
+  <data name="DefaultLeftMirrorHint" xml:space="preserve"><value>Второе поле зеркалит первое (TwoWay). Подсказка обновляется при смене языка.</value></data>
+  <data name="DefaultGroupVmHeader" xml:space="preserve"><value>Привязка через ViewModel (режим по умолчанию для TextBox.Text)</value></data>
+  <data name="DefaultVmDescription" xml:space="preserve"><value>TextBox и Label читают/пишут свойство DemoText. Для TextBox режим по умолчанию — TwoWay.</value></data>
+  <data name="DefaultDemoTextInitial" xml:space="preserve"><value>Текст из ViewModel</value></data>
+  <data name="DefaultCaptionText" xml:space="preserve"><value>Подпись через модель</value></data>
+  <data name="TwoWaySectionTitle" xml:space="preserve"><value>Явный режим TwoWay: изменения идут в обе стороны.</value></data>
+  <data name="TwoWayGroupDirectHeader" xml:space="preserve"><value>Прямая привязка UI (TwoWay + ElementName)</value></data>
+  <data name="TwoWayDirectDescription" xml:space="preserve"><value>Первое поле — источник имени для второго (дублирование в реальном времени).</value></data>
+  <data name="TwoWaySourceText" xml:space="preserve"><value>Привет</value></data>
+  <data name="TwoWaySourceHint" xml:space="preserve"><value>Подсказка: источник для второго поля. До правки текста язык меняет и текст, и подсказку.</value></data>
+  <data name="TwoWaySliderCaptionPrefix" xml:space="preserve"><value>Текущее значение слайдера: </value></data>
+  <data name="TwoWayGroupVmHeader" xml:space="preserve"><value>Привязка через ViewModel (Mode=TwoWay)</value></data>
+  <data name="TwoWayVmDescription" xml:space="preserve"><value>TextBox ↔ UserName, Slider ↔ Volume (оба с явным TwoWay).</value></data>
+  <data name="TwoWayUserNameInitial" xml:space="preserve"><value>Студент</value></data>
+  <data name="TwoWayVolumeCaptionPrefix" xml:space="preserve"><value>Громкость (VM): </value></data>
+  <data name="OneTimeSectionTitle" xml:space="preserve"><value>OneTime: значение передаётся один раз при создании привязки.</value></data>
+  <data name="OneTimeGroupDirectHeader" xml:space="preserve"><value>Прямая привязка (OneTime)</value></data>
+  <data name="OneTimeDirectDescription" xml:space="preserve"><value>TextBlock получает текст из TextBox только при первом отображении (поменяйте TextBox — подпись не следует).</value></data>
+  <data name="OneTimeSeedText" xml:space="preserve"><value>Начальный текст</value></data>
+  <data name="OneTimeSeedHint" xml:space="preserve"><value>Подсказка: начальное значение поля. После вашей правки смена языка не перезапишет текст.</value></data>
+  <data name="OneTimeGroupVmHeader" xml:space="preserve"><value>Привязка через ViewModel (OneTime)</value></data>
+  <data name="OneTimeVmDescription" xml:space="preserve"><value>Label и TextBox ниже используют OneTime к FrozenLabel. Кнопка меняет свойство в VM — визуально остаётся стартовое значение.</value></data>
+  <data name="OneTimeFrozenInitial" xml:space="preserve"><value>Стартовое значение для OneTime</value></data>
+  <data name="OneTimeEditableHint" xml:space="preserve"><value>Можно менять в VM кнопкой — OneTime-поле не обновится само</value></data>
+  <data name="OneTimeChangeFrozenButton" xml:space="preserve"><value>Изменить FrozenLabel в ViewModel</value></data>
+  <data name="OneTimeBumpFormat" xml:space="preserve"><value>Новое значение из VM ({0:HH:mm:ss})</value></data>
+  <data name="OneWaySectionTitle" xml:space="preserve"><value>OneWay: только источник → цель (отображение без записи в VM).</value></data>
+  <data name="OneWayGroupDirectHeader" xml:space="preserve"><value>Прямая привязка (OneWay между элементами)</value></data>
+  <data name="OneWayDirectDescription" xml:space="preserve"><value>Slider задаёт число; TextBlock только показывает (обратная запись не нужна).</value></data>
+  <data name="OneWayValuePrefix" xml:space="preserve"><value>Значение: </value></data>
+  <data name="OneWayMirrorCheckbox" xml:space="preserve"><value>Показать как «Да/Нет»</value></data>
+  <data name="OneWayGroupVmHeader" xml:space="preserve"><value>Привязка через ViewModel (OneWay)</value></data>
+  <data name="OneWayVmDescription" xml:space="preserve"><value>Статус и флаги приходят из VM; кнопка меняет состояние только программно.</value></data>
+  <data name="OneWayBusyCheckbox" xml:space="preserve"><value>Индикатор занятости (только из VM)</value></data>
+  <data name="OneWayRefreshButton" xml:space="preserve"><value>Сменить статус в ViewModel</value></data>
+  <data name="TriggersSectionTitle" xml:space="preserve"><value>Триггеры: DataTrigger, Trigger, EventTrigger.</value></data>
+  <data name="TriggersDataDescription" xml:space="preserve"><value>DataTrigger: свойство IsAlert в ViewModel управляет цветом рамки.</value></data>
+  <data name="TriggersToggleAlert" xml:space="preserve"><value>Переключить IsAlert</value></data>
+  <data name="TriggersHoverDescription" xml:space="preserve"><value>Trigger (IsMouseOver): наведите курсор — фон и рамка меняются без участия ViewModel.</value></data>
+  <data name="TriggersAnimateButton" xml:space="preserve"><value>Нажмите для анимации (EventTrigger + BeginStoryboard)</value></data>
+  <data name="TriggersClickPrefix" xml:space="preserve"><value>Счётчик нажатий (VM): </value></data>
+  <data name="StatusReady" xml:space="preserve"><value>Готово</value></data>
+  <data name="StatusWaiting" xml:space="preserve"><value>Ожидание…</value></data>
+  <data name="LangRussian" xml:space="preserve"><value>Русский</value></data>
+  <data name="LangEnglish" xml:space="preserve"><value>English</value></data>
+</root>

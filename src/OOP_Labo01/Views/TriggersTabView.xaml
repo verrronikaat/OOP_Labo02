@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:OOP_Labo01.Services"
              mc:Ignorable="d"
              d:DesignHeight="520" d:DesignWidth="780">
     <UserControl.Resources>
-        <!-- DataTrigger: меняем оформление по bool из DataContext -->
         <Style x:Key="AlertBorderStyle" TargetType="Border">
             <Setter Property="BorderBrush" Value="#4C8BF5"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -20,7 +20,6 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Trigger: реакция на IsMouseOver (свойство элемента) -->
         <Style x:Key="HoverCard" TargetType="Border">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#D0D7E2"/>
@@ -34,7 +33,6 @@
             </Style.Triggers>
         </Style>
 
-        <!-- EventTrigger: анимация по событию Click (без сторонних NuGet) -->
         <Style x:Key="PulseOnClick" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="RenderTransform">
@@ -59,25 +57,28 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="8">
-            <TextBlock Style="{StaticResource SectionTitle}" Text="Триггеры: DataTrigger, Trigger, EventTrigger."/>
+            <TextBlock Style="{StaticResource SectionTitle}"
+                       Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TriggersSectionTitle, Mode=OneWay}"/>
 
             <Border Style="{StaticResource AlertBorderStyle}" Margin="0,0,0,12">
                 <StackPanel>
-                    <TextBlock Text="DataTrigger: свойство IsAlert в ViewModel управляет цветом рамки." Margin="0,0,0,8"/>
-                    <Button Content="Переключить IsAlert" Command="{Binding ToggleAlertCommand}" Style="{StaticResource PrimaryButton}"/>
+                    <TextBlock Margin="0,0,0,8"
+                               Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TriggersDataDescription, Mode=OneWay}"/>
+                    <Button Command="{Binding ToggleAlertCommand}" Style="{StaticResource PrimaryButton}"
+                            Content="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TriggersToggleAlert, Mode=OneWay}"/>
                 </StackPanel>
             </Border>
 
             <Border Style="{StaticResource HoverCard}" Margin="0,0,0,12">
-                <TextBlock Text="Trigger (IsMouseOver): наведите курсор — фон и рамка меняются без участия ViewModel."/>
+                <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TriggersHoverDescription, Mode=OneWay}"/>
             </Border>
 
             <StackPanel Orientation="Horizontal">
-                <Button Content="Нажмите для анимации (EventTrigger + BeginStoryboard)"
-                        Style="{StaticResource PulseOnClick}"
-                        Command="{Binding IncrementCommand}"/>
+                <Button Style="{StaticResource PulseOnClick}"
+                        Command="{Binding IncrementCommand}"
+                        Content="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TriggersAnimateButton, Mode=OneWay}"/>
                 <TextBlock VerticalAlignment="Center" Margin="12,0,0,0">
-                    <Run Text="Счётчик нажатий (VM): "/>
+                    <Run Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TriggersClickPrefix, Mode=OneWay}"/>
                     <Run Text="{Binding ClickCount, Mode=OneWay}" FontWeight="Bold"/>
                 </TextBlock>
             </StackPanel>

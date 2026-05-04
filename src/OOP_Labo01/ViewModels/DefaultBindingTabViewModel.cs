@@ -1,27 +1,37 @@
-using OOP_Labo01.Models;
+using OOP_Labo01.Services;
 
 namespace OOP_Labo01.ViewModels;
 
 /// <summary>
-/// Вкладка «режим Default»: значение по умолчанию для Mode зависит от свойства (у TextBox — обычно TwoWay).
+/// Вкладка «режим Default»: DemoText подтягивает локализованный шаблон, пока пользователь не менял поле.
 /// </summary>
 public sealed class DefaultBindingTabViewModel : ViewModelBase
 {
-    private string _demoText = "Текст из ViewModel";
-    private readonly DemoMessage _caption = new("Подпись через модель");
+    private string _demoText;
+    private bool _demoDirty;
 
     public DefaultBindingTabViewModel()
     {
-        // Демонстрация: модель можно отобразить через вложенное свойство в привязке.
+        _demoText = AppServices.Localization.GetString(nameof(LocalizationBroker.DefaultDemoTextInitial));
+        LocalizationBroker.Refreshed += OnLanguageRefreshed;
     }
 
-    /// <summary>Строка для привязки без явного Mode (режим по умолчанию для свойства).</summary>
+    private void OnLanguageRefreshed(object? sender, EventArgs e)
+    {
+        if (_demoDirty)
+            return;
+
+        _demoText = AppServices.Localization.GetString(nameof(LocalizationBroker.DefaultDemoTextInitial));
+        OnPropertyChanged(nameof(DemoText));
+    }
+
     public string DemoText
     {
         get => _demoText;
-        set => SetProperty(ref _demoText, value);
+        set
+        {
+            if (SetProperty(ref _demoText, value))
+                _demoDirty = true;
+        }
     }
-
-    /// <summary>Модель для примера Path=Caption.Text.</summary>
-    public DemoMessage Caption => _caption;
 }

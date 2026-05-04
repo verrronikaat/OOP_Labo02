@@ -1,37 +1,39 @@
+using System.Globalization;
 using OOP_Labo01.Commands;
+using OOP_Labo01.Services;
 
 namespace OOP_Labo01.ViewModels;
 
 /// <summary>
-/// Вкладка OneTime: значение передаётся из источника к цели один раз (при первом отображении/смене контекста).
+/// Вкладка OneTime: стартовые строки из ресурсов; формат смены FrozenLabel — тоже из ресурса.
 /// </summary>
 public sealed class OneTimeTabViewModel : ViewModelBase
 {
-    private string _frozenLabel = "Стартовое значение для OneTime";
-    private string _editableVmField = "Можно менять в VM кнопкой — OneTime-поле не обновится само";
+    private string _frozenLabel;
+    private string _editableVmField;
 
     public OneTimeTabViewModel()
     {
+        _frozenLabel = AppServices.Localization.GetString(nameof(LocalizationBroker.OneTimeFrozenInitial));
+        _editableVmField = AppServices.Localization.GetString(nameof(LocalizationBroker.OneTimeEditableHint));
         BumpFrozenCommand = new RelayCommand(() =>
         {
-            FrozenLabel = $"Новое значение из VM ({DateTime.Now:HH:mm:ss})";
+            var fmt = AppServices.Localization.GetString(nameof(LocalizationBroker.OneTimeBumpFormat));
+            FrozenLabel = string.Format(CultureInfo.CurrentCulture, fmt, DateTime.Now);
         });
     }
 
-    /// <summary>Подпись с привязкой OneTime (не «следует» за дальнейшими изменениями свойства так же, как TwoWay).</summary>
     public string FrozenLabel
     {
         get => _frozenLabel;
         set => SetProperty(ref _frozenLabel, value);
     }
 
-    /// <summary>Вспомогательное поле для пояснения в интерфейсе.</summary>
     public string EditableVmField
     {
         get => _editableVmField;
         set => SetProperty(ref _editableVmField, value);
     }
 
-    /// <summary>Команда: меняет свойство в VM, чтобы увидеть, что OneTime не обновляет цель повторно.</summary>
     public RelayCommand BumpFrozenCommand { get; }
 }

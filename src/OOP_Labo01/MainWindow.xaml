@@ -4,33 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:OOP_Labo01.Views"
+        xmlns:services="clr-namespace:OOP_Labo01.Services"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}"
-        Height="620" Width="920"
+        Title="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=WindowTitle, Mode=OneWay}"
+        Height="660" Width="940"
         MinHeight="520" MinWidth="780"
         WindowStartupLocation="CenterScreen">
-    <Grid Margin="12">
+    <DockPanel Margin="12">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock VerticalAlignment="Center" Margin="0,0,8,0"
+                       Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=LanguagePrompt, Mode=OneWay}"/>
+            <ComboBox Width="200"
+                      ItemsSource="{Binding Languages}"
+                      DisplayMemberPath="Label"
+                      SelectedValuePath="Tag"
+                      SelectedValue="{Binding UiCultureTag, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Menu Margin="16,0,0,0" VerticalAlignment="Center">
+                <MenuItem Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=AboutMenu, Mode=OneWay}"
+                          Command="{Binding AboutCommand}"/>
+            </Menu>
+        </StackPanel>
+
         <TabControl Style="{StaticResource LabTabControlStyle}">
-            <!-- Вкладка 1: режим Default (как задано у DependencyProperty) -->
-            <TabItem Header="1. По умолчанию (Default)">
+            <TabItem Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TabDefault, Mode=OneWay}">
                 <views:DefaultBindingTabView/>
             </TabItem>
-            <!-- Вкладка 2: TwoWay -->
-            <TabItem Header="2. TwoWay">
+            <TabItem Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TabTwoWay, Mode=OneWay}">
                 <views:TwoWayTabView/>
             </TabItem>
-            <!-- Вкладка 3: OneTime -->
-            <TabItem Header="3. OneTime">
+            <TabItem Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TabOneTime, Mode=OneWay}">
                 <views:OneTimeTabView/>
             </TabItem>
-            <!-- Вкладка 4: OneWay -->
-            <TabItem Header="4. OneWay">
+            <TabItem Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TabOneWay, Mode=OneWay}">
                 <views:OneWayTabView/>
             </TabItem>
-            <!-- Вкладка 5: триггеры -->
-            <TabItem Header="5. Триггеры">
+            <TabItem Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=TabTriggers, Mode=OneWay}">
                 <views:TriggersTabView/>
             </TabItem>
         </TabControl>
-    </Grid>
+    </DockPanel>
 </Window>

@@ -3,26 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:OOP_Labo01.Services"
              mc:Ignorable="d"
              d:DesignHeight="480" d:DesignWidth="780">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="8">
-            <TextBlock Style="{StaticResource SectionTitle}" Text="OneWay: только источник → цель (отображение без записи в VM)."/>
+            <TextBlock Style="{StaticResource SectionTitle}"
+                       Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWaySectionTitle, Mode=OneWay}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox Grid.Column="0" Header="Прямая привязка (OneWay между элементами)" Margin="0,0,8,0">
+                <GroupBox Grid.Column="0" Margin="0,0,8,0"
+                          Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayGroupDirectHeader, Mode=OneWay}">
                     <StackPanel>
-                        <TextBlock Text="Slider задаёт число; TextBlock только показывает (обратная запись не нужна)."/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayDirectDescription, Mode=OneWay}"/>
                         <Slider x:Name="ReadOnlySlider" Minimum="0" Maximum="50" Value="12" Margin="0,8,0,4"/>
                         <TextBlock FontSize="18" Margin="0,4,0,0">
-                            <Run Text="Значение: "/>
+                            <Run Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayValuePrefix, Mode=OneWay}"/>
                             <Run Text="{Binding Value, ElementName=ReadOnlySlider, Mode=OneWay}"/>
                         </TextBlock>
-                        <CheckBox x:Name="MirrorBox" Content="Показать как «Да/Нет»" IsChecked="True" Margin="0,16,0,4"/>
+                        <CheckBox x:Name="MirrorBox"
+                                  Content="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayMirrorCheckbox, Mode=OneWay}"
+                                  IsChecked="True" Margin="0,16,0,4"/>
                         <Label FontWeight="Bold">
                             <Label.Content>
                                 <Binding ElementName="MirrorBox" Path="IsChecked" Mode="OneWay"/>
@@ -31,16 +36,18 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Grid.Column="1" Header="Привязка через ViewModel (OneWay)">
+                <GroupBox Grid.Column="1"
+                          Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayGroupVmHeader, Mode=OneWay}">
                     <StackPanel>
-                        <TextBlock Text="Статус и флаги приходят из VM; кнопка меняет состояние только программно."/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayVmDescription, Mode=OneWay}"/>
                         <Label FontSize="18" Margin="0,8,0,4"
                                Content="{Binding Status, Mode=OneWay}"/>
-                        <CheckBox Content="Индикатор занятости (только из VM)"
+                        <CheckBox Content="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayBusyCheckbox, Mode=OneWay}"
                                   IsChecked="{Binding IsBusy, Mode=OneWay}"
                                   Margin="0,0,0,8"/>
-                        <Button Content="Сменить статус в ViewModel" Style="{StaticResource PrimaryButton}"
-                                Command="{Binding RefreshStatusCommand}"/>
+                        <Button Style="{StaticResource PrimaryButton}"
+                                Command="{Binding RefreshStatusCommand}"
+                                Content="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneWayRefreshButton, Mode=OneWay}"/>
                     </StackPanel>
                 </GroupBox>
             </Grid>

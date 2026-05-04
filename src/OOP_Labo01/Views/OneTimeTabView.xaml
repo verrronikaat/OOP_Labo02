@@ -3,34 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:OOP_Labo01.Services"
+             xmlns:behaviors="clr-namespace:OOP_Labo01.Behaviors"
              mc:Ignorable="d"
              d:DesignHeight="480" d:DesignWidth="780">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="8">
-            <TextBlock Style="{StaticResource SectionTitle}" Text="OneTime: значение передаётся один раз при создании привязки."/>
+            <TextBlock Style="{StaticResource SectionTitle}"
+                       Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneTimeSectionTitle, Mode=OneWay}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox Grid.Column="0" Header="Прямая привязка (OneTime)" Margin="0,0,8,0">
+                <GroupBox Grid.Column="0" Margin="0,0,8,0"
+                          Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneTimeGroupDirectHeader, Mode=OneWay}">
                     <StackPanel>
-                        <TextBlock Text="TextBlock получает текст из TextBox только при первом отображении (поменяйте TextBox — подпись не следует)."/>
-                        <TextBox x:Name="SeedBox" Text="Начальный текст" Margin="0,8,0,4"/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneTimeDirectDescription, Mode=OneWay}"/>
+                        <TextBox x:Name="SeedBox" Margin="0,8,0,4"
+                                 behaviors:LocalizableField.TextResourceKey="OneTimeSeedText"
+                                 behaviors:LocalizableField.HintResourceKey="OneTimeSeedHint"/>
                         <TextBlock FontSize="16" Margin="0,4,0,0"
                                    Text="{Binding Text, ElementName=SeedBox, Mode=OneTime}"/>
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Grid.Column="1" Header="Привязка через ViewModel (OneTime)">
+                <GroupBox Grid.Column="1"
+                          Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneTimeGroupVmHeader, Mode=OneWay}">
                     <StackPanel>
-                        <TextBlock Text="Label и TextBox ниже используют OneTime к FrozenLabel. Кнопка меняет свойство в VM — визуально остаётся стартовое значение."/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneTimeVmDescription, Mode=OneWay}"/>
                         <Label FontSize="16" Margin="0,8,0,4"
                                Content="{Binding FrozenLabel, Mode=OneTime}"/>
                         <TextBox Text="{Binding FrozenLabel, Mode=OneTime}" Margin="0,0,0,8"/>
-                        <Button Content="Изменить FrozenLabel в ViewModel" Style="{StaticResource PrimaryButton}"
-                                Command="{Binding BumpFrozenCommand}"/>
+                        <Button Style="{StaticResource PrimaryButton}"
+                                Command="{Binding BumpFrozenCommand}"
+                                Content="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=OneTimeChangeFrozenButton, Mode=OneWay}"/>
                         <TextBlock Margin="0,8,0,0" Opacity="0.85" FontSize="12"
                                    Text="{Binding EditableVmField, Mode=OneWay}"/>
                     </StackPanel>

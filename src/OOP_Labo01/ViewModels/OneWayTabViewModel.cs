@@ -1,25 +1,30 @@
 using OOP_Labo01.Commands;
+using OOP_Labo01.Services;
 
 namespace OOP_Labo01.ViewModels;
 
 /// <summary>
-/// Вкладка OneWay: только источник → цель (например, только отображение статуса).
+/// Вкладка OneWay: статусы берутся из строковых ресурсов при смене языка.
 /// </summary>
 public sealed class OneWayTabViewModel : ViewModelBase
 {
-    private string _status = "Готово";
+    private string _status = "";
     private bool _isBusy;
 
     public OneWayTabViewModel()
     {
-        RefreshStatusCommand = new RelayCommand(() =>
-        {
-            Status = IsBusy ? "Ожидание…" : "Готово";
-            IsBusy = !IsBusy;
-        });
+        RefreshStatusCommand = new RelayCommand(_ => IsBusy = !IsBusy);
+        LocalizationBroker.Refreshed += (_, _) => ApplyStatusText();
+        ApplyStatusText();
     }
 
-    /// <summary>Статус только для чтения в UI (меняется из VM).</summary>
+    private void ApplyStatusText()
+    {
+        Status = IsBusy
+            ? AppServices.Localization.GetString(nameof(LocalizationBroker.StatusWaiting))
+            : AppServices.Localization.GetString(nameof(LocalizationBroker.StatusReady));
+    }
+
     public string Status
     {
         get => _status;
@@ -29,7 +34,11 @@ public sealed class OneWayTabViewModel : ViewModelBase
     public bool IsBusy
     {
         get => _isBusy;
-        set => SetProperty(ref _isBusy, value);
+        set
+        {
+            if (SetProperty(ref _isBusy, value))
+                ApplyStatusText();
+        }
     }
 
     public RelayCommand RefreshStatusCommand { get; }

@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:services="clr-namespace:OOP_Labo01.Services"
+             xmlns:behaviors="clr-namespace:OOP_Labo01.Behaviors"
              mc:Ignorable="d"
              d:DesignHeight="480" d:DesignWidth="780">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="8">
             <TextBlock Style="{StaticResource SectionTitle}"
-                       Text="Режим Default: для каждого DependencyProperty задан свой режим по умолчанию (у TextBox.Text — TwoWay)."/>
-            <TextBlock Text="Слева — «прямая» привязка между элементами (ElementName). Справа — привязка к свойствам ViewModel."/>
+                       Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultSectionTitle, Mode=OneWay}"/>
+            <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultSectionSubtitle, Mode=OneWay}"/>
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -17,10 +19,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <!-- Прямая привязка UI → UI (без ViewModel) -->
-                <GroupBox Grid.Column="0" Header="Прямая привязка (ElementName)" Margin="0,0,8,0">
+                <GroupBox Grid.Column="0" Margin="0,0,8,0"
+                          Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultGroupDirectHeader, Mode=OneWay}">
                     <StackPanel>
-                        <TextBlock Text="Slider → Label: значение слайдера показывается в подписи."/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultDirectDescription, Mode=OneWay}"/>
                         <Slider x:Name="DirectSlider"
                                 Minimum="0" Maximum="100"
                                 TickFrequency="10" IsSnapToTickEnabled="True"
@@ -30,21 +32,27 @@
                                FontSize="18"
                                HorizontalAlignment="Left"/>
 
-                        <TextBlock Margin="0,16,0,0" Text="Два TextBox связаны TwoWay через ElementName (текст дублируется)."/>
-                        <TextBox x:Name="LeftBox" Text="Левое поле" Margin="0,6,0,4"/>
+                        <TextBlock Margin="0,16,0,0"
+                                   Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultTwoBoxesDescription, Mode=OneWay}"/>
+                        <TextBox x:Name="LeftBox" Margin="0,6,0,4"
+                                 behaviors:LocalizableField.TextResourceKey="DefaultLeftBoxText"
+                                 behaviors:LocalizableField.HintResourceKey="DefaultLeftBoxHint"/>
                         <TextBox Text="{Binding Text, ElementName=LeftBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                 Margin="0,0,0,4"/>
+                                 Margin="0,0,0,4"
+                                 ToolTip="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultLeftMirrorHint, Mode=OneWay}"/>
                     </StackPanel>
                 </GroupBox>
 
-                <!-- Привязка через ViewModel: Mode не указан — используется режим по умолчанию для свойства -->
-                <GroupBox Grid.Column="1" Header="Привязка через ViewModel (режим по умолчанию для TextBox.Text)">
+                <GroupBox Grid.Column="1"
+                          Header="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultGroupVmHeader, Mode=OneWay}">
                     <StackPanel>
-                        <TextBlock Text="TextBox и Label читают/пишут свойство DemoText. Для TextBox режим по умолчанию — TwoWay."/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultVmDescription, Mode=OneWay}"/>
                         <TextBox Text="{Binding DemoText}"
+                                 ToolTip="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultDemoTextInitial, Mode=OneWay}"
                                  Margin="0,8,0,4"/>
                         <Label Content="{Binding DemoText}" Margin="0,0,0,4"/>
-                        <TextBlock Text="{Binding Caption.Text}" FontStyle="Italic" Opacity="0.85"/>
+                        <TextBlock Text="{Binding Source={x:Static services:LocalizationBroker.Instance}, Path=DefaultCaptionText, Mode=OneWay}"
+                                   FontStyle="Italic" Opacity="0.85"/>
                     </StackPanel>
                 </GroupBox>
             </Grid>
