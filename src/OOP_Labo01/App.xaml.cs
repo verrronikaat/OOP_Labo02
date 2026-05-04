@@ -11,7 +11,7 @@ public partial class App : Application
 {
     protected override void OnStartup(StartupEventArgs e)
     {
-        var provider = new ResxLocalizationProvider();
+        var provider = new XamlDictionaryLocalizationProvider();
         AppServices.Localization = provider;
         LocalizationBroker.Initialize(provider);
         provider.SetCulture(CultureInfo.GetCultureInfo("ru-RU"));
