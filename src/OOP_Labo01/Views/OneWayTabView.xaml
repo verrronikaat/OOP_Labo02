@@ -1,0 +1,49 @@
+<UserControl x:Class="OOP_Labo01.Views.OneWayTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="480" d:DesignWidth="780">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="8">
+            <TextBlock Style="{StaticResource SectionTitle}" Text="OneWay: только источник → цель (отображение без записи в VM)."/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Grid.Column="0" Header="Прямая привязка (OneWay между элементами)" Margin="0,0,8,0">
+                    <StackPanel>
+                        <TextBlock Text="Slider задаёт число; TextBlock только показывает (обратная запись не нужна)."/>
+                        <Slider x:Name="ReadOnlySlider" Minimum="0" Maximum="50" Value="12" Margin="0,8,0,4"/>
+                        <TextBlock FontSize="18" Margin="0,4,0,0">
+                            <Run Text="Значение: "/>
+                            <Run Text="{Binding Value, ElementName=ReadOnlySlider, Mode=OneWay}"/>
+                        </TextBlock>
+                        <CheckBox x:Name="MirrorBox" Content="Показать как «Да/Нет»" IsChecked="True" Margin="0,16,0,4"/>
+                        <Label FontWeight="Bold">
+                            <Label.Content>
+                                <Binding ElementName="MirrorBox" Path="IsChecked" Mode="OneWay"/>
+                            </Label.Content>
+                        </Label>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Grid.Column="1" Header="Привязка через ViewModel (OneWay)">
+                    <StackPanel>
+                        <TextBlock Text="Статус и флаги приходят из VM; кнопка меняет состояние только программно."/>
+                        <Label FontSize="18" Margin="0,8,0,4"
+                               Content="{Binding Status, Mode=OneWay}"/>
+                        <CheckBox Content="Индикатор занятости (только из VM)"
+                                  IsChecked="{Binding IsBusy, Mode=OneWay}"
+                                  Margin="0,0,0,8"/>
+                        <Button Content="Сменить статус в ViewModel" Style="{StaticResource PrimaryButton}"
+                                Command="{Binding RefreshStatusCommand}"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,53 @@
+<UserControl x:Class="OOP_Labo01.Views.DefaultBindingTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="480" d:DesignWidth="780">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="8">
+            <TextBlock Style="{StaticResource SectionTitle}"
+                       Text="Режим Default: для каждого DependencyProperty задан свой режим по умолчанию (у TextBox.Text — TwoWay)."/>
+            <TextBlock Text="Слева — «прямая» привязка между элементами (ElementName). Справа — привязка к свойствам ViewModel."/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Прямая привязка UI → UI (без ViewModel) -->
+                <GroupBox Grid.Column="0" Header="Прямая привязка (ElementName)" Margin="0,0,8,0">
+                    <StackPanel>
+                        <TextBlock Text="Slider → Label: значение слайдера показывается в подписи."/>
+                        <Slider x:Name="DirectSlider"
+                                Minimum="0" Maximum="100"
+                                TickFrequency="10" IsSnapToTickEnabled="True"
+                                Value="35"
+                                Margin="0,8,0,4"/>
+                        <Label Content="{Binding Value, ElementName=DirectSlider}"
+                               FontSize="18"
+                               HorizontalAlignment="Left"/>
+
+                        <TextBlock Margin="0,16,0,0" Text="Два TextBox связаны TwoWay через ElementName (текст дублируется)."/>
+                        <TextBox x:Name="LeftBox" Text="Левое поле" Margin="0,6,0,4"/>
+                        <TextBox Text="{Binding Text, ElementName=LeftBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,4"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- Привязка через ViewModel: Mode не указан — используется режим по умолчанию для свойства -->
+                <GroupBox Grid.Column="1" Header="Привязка через ViewModel (режим по умолчанию для TextBox.Text)">
+                    <StackPanel>
+                        <TextBlock Text="TextBox и Label читают/пишут свойство DemoText. Для TextBox режим по умолчанию — TwoWay."/>
+                        <TextBox Text="{Binding DemoText}"
+                                 Margin="0,8,0,4"/>
+                        <Label Content="{Binding DemoText}" Margin="0,0,0,4"/>
+                        <TextBlock Text="{Binding Caption.Text}" FontStyle="Italic" Opacity="0.85"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,15 @@
+## Build results
+[Bb]in/
+[Oo]bj/
+out/
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+
+## Rider
+.idea/
+
+## User-specific
+*.rsuser
