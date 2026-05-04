@@ -12,4 +12,8 @@
     <StartupObject>OOP_Labo01.App</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OOP_Labo01.Localization\OOP_Labo01.Localization.csproj" />
+  </ItemGroup>
+
 </Project>

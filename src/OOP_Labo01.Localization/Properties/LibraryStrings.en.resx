@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="WindowTitle" xml:space="preserve"><value>Lab 2 — WPF localization (external DLL, MVVM)</value></data>
+  <data name="TabDefault" xml:space="preserve"><value>1. Default</value></data>
+  <data name="TabTwoWay" xml:space="preserve"><value>2. TwoWay</value></data>
+  <data name="TabOneTime" xml:space="preserve"><value>3. OneTime</value></data>
+  <data name="TabOneWay" xml:space="preserve"><value>4. OneWay</value></data>
+  <data name="TabTriggers" xml:space="preserve"><value>5. Triggers</value></data>
+  <data name="LanguagePrompt" xml:space="preserve"><value>Language:</value></data>
+  <data name="AboutMenu" xml:space="preserve"><value>About</value></data>
+  <data name="AboutTitle" xml:space="preserve"><value>About</value></data>
+  <data name="AboutBody" xml:space="preserve"><value>Lab 2: strings from external library OOP_Labo01.Localization (RESX).</value></data>
+  <data name="DefaultSectionTitle" xml:space="preserve"><value>Default mode: each DependencyProperty has its default mode (TextBox.Text defaults to TwoWay).</value></data>
+  <data name="DefaultSectionSubtitle" xml:space="preserve"><value>Left: direct binding (ElementName). Right: binding to ViewModel properties.</value></data>
+  <data name="DefaultGroupDirectHeader" xml:space="preserve"><value>Direct binding (ElementName)</value></data>
+  <data name="DefaultDirectDescription" xml:space="preserve"><value>Slider → Label: the slider value is shown in the label.</value></data>
+  <data name="DefaultTwoBoxesDescription" xml:space="preserve"><value>Two TextBoxes are TwoWay-linked via ElementName (text is mirrored).</value></data>
+  <data name="DefaultLeftBoxText" xml:space="preserve"><value>Left field</value></data>
+  <data name="DefaultLeftBoxHint" xml:space="preserve"><value>Hint: mirrored field. Language changes update hint and text until you edit the text.</value></data>
+  <data name="DefaultLeftMirrorHint" xml:space="preserve"><value>Second box mirrors the first (TwoWay). Hint updates when the language changes.</value></data>
+  <data name="DefaultGroupVmHeader" xml:space="preserve"><value>ViewModel binding (default for TextBox.Text)</value></data>
+  <data name="DefaultVmDescription" xml:space="preserve"><value>TextBox and Label read/write DemoText. TextBox default mode is TwoWay.</value></data>
+  <data name="DefaultDemoTextInitial" xml:space="preserve"><value>Text from ViewModel</value></data>
+  <data name="DefaultCaptionText" xml:space="preserve"><value>Caption via model</value></data>
+  <data name="TwoWaySectionTitle" xml:space="preserve"><value>Explicit TwoWay: changes flow both ways.</value></data>
+  <data name="TwoWayGroupDirectHeader" xml:space="preserve"><value>Direct UI binding (TwoWay + ElementName)</value></data>
+  <data name="TwoWayDirectDescription" xml:space="preserve"><value>First field is the source for the second (live mirroring).</value></data>
+  <data name="TwoWaySourceText" xml:space="preserve"><value>Hello</value></data>
+  <data name="TwoWaySourceHint" xml:space="preserve"><value>Hint: source for the second field. Until you edit, both hint and text follow the language.</value></data>
+  <data name="TwoWaySliderCaptionPrefix" xml:space="preserve"><value>Current slider value: </value></data>
+  <data name="TwoWayGroupVmHeader" xml:space="preserve"><value>ViewModel binding (Mode=TwoWay)</value></data>
+  <data name="TwoWayVmDescription" xml:space="preserve"><value>TextBox ↔ UserName, Slider ↔ Volume (both explicit TwoWay).</value></data>
+  <data name="TwoWayUserNameInitial" xml:space="preserve"><value>Student</value></data>
+  <data name="TwoWayVolumeCaptionPrefix" xml:space="preserve"><value>Volume (VM): </value></data>
+  <data name="OneTimeSectionTitle" xml:space="preserve"><value>OneTime: value is transferred once when the binding is created.</value></data>
+  <data name="OneTimeGroupDirectHeader" xml:space="preserve"><value>Direct binding (OneTime)</value></data>
+  <data name="OneTimeDirectDescription" xml:space="preserve"><value>TextBlock reads TextBox only on first render (change TextBox — label will not follow).</value></data>
+  <data name="OneTimeSeedText" xml:space="preserve"><value>Initial text</value></data>
+  <data name="OneTimeSeedHint" xml:space="preserve"><value>Hint: initial field value. After you edit, language changes will not overwrite your text.</value></data>
+  <data name="OneTimeGroupVmHeader" xml:space="preserve"><value>ViewModel binding (OneTime)</value></data>
+  <data name="OneTimeVmDescription" xml:space="preserve"><value>Label and TextBox below use OneTime to FrozenLabel. Button changes VM — UI keeps the start value.</value></data>
+  <data name="OneTimeFrozenInitial" xml:space="preserve"><value>Start value for OneTime</value></data>
+  <data name="OneTimeEditableHint" xml:space="preserve"><value>Can be changed in VM with the button — OneTime field will not update by itself</value></data>
+  <data name="OneTimeChangeFrozenButton" xml:space="preserve"><value>Change FrozenLabel in ViewModel</value></data>
+  <data name="OneTimeBumpFormat" xml:space="preserve"><value>New VM value ({0:HH:mm:ss})</value></data>
+  <data name="OneWaySectionTitle" xml:space="preserve"><value>OneWay: source → target only (display without writing to VM).</value></data>
+  <data name="OneWayGroupDirectHeader" xml:space="preserve"><value>Direct binding (OneWay between elements)</value></data>
+  <data name="OneWayDirectDescription" xml:space="preserve"><value>Slider sets the number; TextBlock only shows (no reverse write).</value></data>
+  <data name="OneWayValuePrefix" xml:space="preserve"><value>Value: </value></data>
+  <data name="OneWayMirrorCheckbox" xml:space="preserve"><value>Show as Yes/No</value></data>
+  <data name="OneWayGroupVmHeader" xml:space="preserve"><value>ViewModel binding (OneWay)</value></data>
+  <data name="OneWayVmDescription" xml:space="preserve"><value>Status and flags come from VM; the button changes state programmatically only.</value></data>
+  <data name="OneWayBusyCheckbox" xml:space="preserve"><value>Busy indicator (from VM only)</value></data>
+  <data name="OneWayRefreshButton" xml:space="preserve"><value>Toggle status in ViewModel</value></data>
+  <data name="TriggersSectionTitle" xml:space="preserve"><value>Triggers: DataTrigger, Trigger, EventTrigger.</value></data>
+  <data name="TriggersDataDescription" xml:space="preserve"><value>DataTrigger: IsAlert in ViewModel controls border color.</value></data>
+  <data name="TriggersToggleAlert" xml:space="preserve"><value>Toggle IsAlert</value></data>
+  <data name="TriggersHoverDescription" xml:space="preserve"><value>Trigger (IsMouseOver): hover changes background and border without ViewModel.</value></data>
+  <data name="TriggersAnimateButton" xml:space="preserve"><value>Click for animation (EventTrigger + BeginStoryboard)</value></data>
+  <data name="TriggersClickPrefix" xml:space="preserve"><value>Click count (VM): </value></data>
+  <data name="StatusReady" xml:space="preserve"><value>Ready</value></data>
+  <data name="StatusWaiting" xml:space="preserve"><value>Waiting…</value></data>
+  <data name="LangRussian" xml:space="preserve"><value>Russian</value></data>
+  <data name="LangEnglish" xml:space="preserve"><value>English</value></data>
+</root>
